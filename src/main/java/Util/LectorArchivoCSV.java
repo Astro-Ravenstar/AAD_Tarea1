@@ -1,0 +1,36 @@
+package Util;
+
+import Model.Empleado;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class LectorArchivoCSV {
+
+    public static List<Empleado> leerArchivoCSV(String rutaArchivo) throws IOException {
+        List<Empleado> empleados = new ArrayList<>();
+
+        try (CSVParser csvParser = new CSVParser(new FileReader(rutaArchivo), CSVFormat.DEFAULT)) {
+            for (CSVRecord record : csvParser) {
+                int id = Integer.parseInt(record.get(0));
+                String nombre = record.get(1) + " " + record.get(2);
+                String dni = record.get(3);
+
+                List<Double> sueldosMensuales = new ArrayList<>();
+                for (int i = 4; i < record.size(); i++) {
+                    sueldosMensuales.add(Double.parseDouble(record.get(i)));
+                }
+
+                Empleado empleado = new Empleado(id, nombre, dni, sueldosMensuales);
+                empleados.add(empleado);
+            }
+        }
+
+        return empleados;
+    }
+}
