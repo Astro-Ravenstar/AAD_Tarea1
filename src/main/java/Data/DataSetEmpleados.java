@@ -6,9 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import Model.Empleado;
-import Util.Configuracion;
-import Util.EscritorArchivoCSV;
-import Util.EscritorArchivoTXT;
+import Util.*;
 
 public class DataSetEmpleados {
 
@@ -65,19 +63,19 @@ public class DataSetEmpleados {
     public static void escribirDatasetExcel(List<Empleado> empleados) throws IOException {
         Configuracion configuracion = new Configuracion();
         String rutaArchivo = configuracion.getProperty("ruta.xlsx");
-        EscritorArchivoExcel.escribirDatosOriginales(rutaArchivo, empleados);
+        EscritorArchivoExcel.escribirDatosGenerados(rutaArchivo, empleados);
     }
 
     public static void escribirDatasetXML(List<Empleado> empleados) throws IOException {
         Configuracion configuracion = new Configuracion();
         String rutaArchivo = configuracion.getProperty("ruta.xml");
-        EscritorArchivoXML.escribirDatosOriginales(rutaArchivo, empleados);
+        EscritorArchivoXML.escribirDatosGenerados(rutaArchivo, empleados);
     }
 
     public static void escribirDatasetJSON(List<Empleado> empleados) throws IOException {
         Configuracion configuracion = new Configuracion();
         String rutaArchivo = configuracion.getProperty("ruta.json");
-        EscritorArchivoJSON.escribirDatosOriginales(rutaArchivo, empleados);
+        EscritorArchivoJSON.escribirDatosGenerados(rutaArchivo, empleados);
     }
 
 }

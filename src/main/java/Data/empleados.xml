@@ -1,0 +1,23 @@
+<empleados>
+    <empleado>
+        <id>1</id>
+        <nombre>Juan Pérez</nombre>
+        <dni>12345678A</dni>
+        <sueldos>
+            <sueldo>1200.50</sueldo>
+            <sueldo>1300.75</sueldo>
+            <sueldo>1400.00</sueldo>
+            <!-- ... -->
+        </sueldos>
+    </empleado>
+    <empleado>
+        <id>2</id>
+        <nombre>María García</nombre>
+        <dni>87654321B</dni>
+        <sueldos>
+            <sueldo>1100.00</sueldo>
+            <sueldo>1150.75</sueldo>
+            <!-- ... -->
+        </sueldos>
+    </empleado>
+</empleados>
