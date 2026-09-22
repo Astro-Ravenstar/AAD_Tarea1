@@ -3,7 +3,10 @@ package Frame;
 import Data.DataSetEmpleados;
 import Model.Empleado;
 import Util.*;
+
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.List;
 import java.util.Scanner;
 
@@ -31,24 +34,50 @@ public class MenuSeleccion {
 
         switch (opcion) {
             case 1:
-                rutaArchivo = "empleados.txt";
-                empleadosLeidos = LectorArchivoTXT.leerArchivoTXT(rutaArchivo);
+                try {
+                    rutaArchivo = new Configuracion().getProperty("ruta.txt");
+                    empleadosLeidos = LectorArchivoTXT.leerArchivoTXT(rutaArchivo);
+                } catch (FileNotFoundException e) {
+                    System.out.println("No se encontró el archivo en la ruta predeterminada:\n"
+                            + rutaArchivo + ".");
+                }
                 break;
             case 2:
-                rutaArchivo = "empleados.csv";
-                empleadosLeidos = LectorArchivoCSV.leerArchivoCSV(rutaArchivo);
+                try {
+                    rutaArchivo = new Configuracion().getProperty("ruta.csv");
+                    empleadosLeidos = LectorArchivoCSV.leerArchivoCSV(rutaArchivo);
+                } catch (FileNotFoundException e) {
+                    System.out.println("No se encontró el archivo en la ruta predeterminada:\n"
+                            + rutaArchivo + ".");
+                }
                 break;
             case 3:
-                rutaArchivo = "empleados.xlsx";
-                empleadosLeidos = LectorArchivoExcel.leerArchivoExcel(rutaArchivo);
+                try {
+                    rutaArchivo = new Configuracion().getProperty("ruta.xlsx");
+                    empleadosLeidos = LectorArchivoExcel.leerArchivoExcel(rutaArchivo);
+                } catch (FileNotFoundException e) {
+                    System.out.println("No se encontró el archivo en la ruta predeterminada:\n"
+                            + rutaArchivo + ".");
+                }
                 break;
             case 4:
-                rutaArchivo = "empleados.xml";
-                empleadosLeidos = LectorArchivoXML.leerArchivoXML(rutaArchivo);
+                try {
+                    rutaArchivo = new Configuracion().getProperty("ruta.xml");
+                    empleadosLeidos = LectorArchivoXML.leerArchivoXML(rutaArchivo);
+                } catch (FileNotFoundException e) {
+                    System.out.println("No se encontró el archivo en la ruta predeterminada:\n"
+                            + rutaArchivo + ".");
+                }
                 break;
             case 5:
-                rutaArchivo = "empleados.json";
-                empleadosLeidos = LectorArchivoJSON.leerArchivoJSON(rutaArchivo);
+                try {
+                    rutaArchivo = new Configuracion().getProperty("ruta.json");
+                    empleadosLeidos = LectorArchivoJSON.leerArchivoJSON(rutaArchivo);
+                }
+                catch (FileNotFoundException e) {
+                    System.out.println("No se encontró el archivo en la ruta predeterminada:\n"
+                            + rutaArchivo + ".");
+                }
                 break;
             case 0:
                 System.out.println("Saliendo del programa...");
@@ -66,19 +95,19 @@ public class MenuSeleccion {
             // Guardar el archivo en el mismo formato que el archivo de entrada
             switch (opcion) {
                 case 1:
-                    // hacer
+                    EscritorArchivoTXT.escribirDatosGenerados(rutaSalida, empleadosLeidos);
                     break;
                 case 2:
-// hacer
+                    EscritorArchivoCSV.escribirDatosGenerados(rutaSalida, empleadosLeidos);
                     break;
                 case 3:
-// hacer
+                    EscritorArchivoExcel.escribirDatosGenerados(rutaSalida, empleadosLeidos);
                     break;
                 case 4:
-// hacer
+                    EscritorArchivoXML.escribirDatosGenerados(rutaSalida, empleadosLeidos);
                     break;
                 case 5:
-// hacer
+                    EscritorArchivoJSON.escribirDatosGenerados(rutaSalida, empleadosLeidos);
                     break;
             }
         }
@@ -86,11 +115,18 @@ public class MenuSeleccion {
 
     // Método para mostrar el sumario en consola
     private static void mostrarSumario(List<Empleado> empleados) {
-        // hacer
+        for (Empleado empleado : empleados) {
+            double salMed = empleado.calcularSueldoMedio();
+            double salMax = empleado.obtenerSueldoMaximo();
+            double salMin = empleado.obtenerSueldoMinimo();
+            System.out.printf("Empleado: " + empleado.getNombre() + " , Sueldo medio = " + salMed +
+                    " , Sueldo máximo = " + salMax +
+                    " , Sueldo mínimo = " + salMin + ".\n");
+        }
     }
 
     // Método para generar los archivos de datos
     private static void generarArchivosDeDatos(List<Empleado> empleados) throws IOException {
-        // hacer
+        //Delegado al switch
     }
 }

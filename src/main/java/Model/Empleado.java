@@ -10,6 +10,11 @@ public class Empleado {
     private String dni;
     private List<Double> sueldosMensuales;
 
+    // Constructor vacío añadido para compatibilidad con LectorArchivoJSON
+    public Empleado() {
+
+    }
+
     // Constructor
     public Empleado(int id, String nombre, String dni, List<Double> sueldosMensuales) {
         this.id = id;
