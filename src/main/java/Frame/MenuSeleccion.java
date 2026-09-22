@@ -6,7 +6,8 @@ import Util.*;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.lang.reflect.Array;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Scanner;
 
@@ -127,6 +128,11 @@ public class MenuSeleccion {
 
     // Método para generar los archivos de datos
     private static void generarArchivosDeDatos(List<Empleado> empleados) throws IOException {
-        //Delegado al switch
+        DataSetEmpleados.escribirDatasetTXT(empleados);
+        DataSetEmpleados.escribirDatasetCSV(empleados);
+        DataSetEmpleados.escribirDatasetExcel(empleados);
+        DataSetEmpleados.escribirDatasetXML(empleados);
+        DataSetEmpleados.escribirDatasetJSON(empleados);
+
     }
 }
